@@ -8,6 +8,8 @@ import {
   populateProducts,
 } from '../slices/product/productSlice'
 
+import styles from './ProductListing.module.css'
+
 export const ProductListing = () => {
   const dispatch = useAppDispatch()
   const products = useAppSelector(filteredProducts)
@@ -20,6 +22,9 @@ export const ProductListing = () => {
 
   return (
     <>
+      <Row className={styles.productList}>
+        <ProductGrid products={products} />
+      </Row>
     </>
   )
 }
