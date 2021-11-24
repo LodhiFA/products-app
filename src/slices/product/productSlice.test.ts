@@ -2,7 +2,6 @@ import { IProductModel } from '../../models/IProductModel'
 import reducer, {
   IProductState,
   populateProducts,
-  productSlice,
   searchProducts,
 } from './productSlice'
 

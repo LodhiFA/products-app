@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import productReducer from '../slices/product/productSlice'
+import modalReducer from '../slices/modal/modalSlice'
 
 export const store = configureStore({
   reducer: {
     product: productReducer,
+    modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
