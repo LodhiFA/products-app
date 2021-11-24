@@ -2,6 +2,11 @@
     margin: 10px 0;
 }
 
-.product img {
+.productCard {
+    height: 100%;
+    width: 18rem;
+}
+
+.productCard img {
     padding: 0 50px;
 }

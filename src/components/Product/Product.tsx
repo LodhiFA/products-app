@@ -1,6 +1,8 @@
 import React from 'react'
 import { Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { useAppDispatch } from '../../app/hooks'
 import { IProductModel } from '../../models/IProductModel'
+import { showModal } from '../../slices/modal/modalSlice'
 import { capitalize } from '../../utilities/Utility'
 import styles from './Product.module.css'
 
@@ -9,9 +11,17 @@ interface IProductProps {
 }
 
 export const Product = (props: IProductProps) => {
+  const dispatch = useAppDispatch()
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) =>
+    dispatch(showModal(props.product))
+
   return (
     <Col sm={3} className={styles.product}>
-      <Card style={{ width: '18rem' }}>
+      <Card
+        className={styles.productCard}
+        data-testid={'test-' + props.product.gtin}
+        onClick={handleClick}>
         <Card.Img variant='top' src={props.product.image_link} />
         <Card.Body>
           <Card.Title>{props.product.title}</Card.Title>
