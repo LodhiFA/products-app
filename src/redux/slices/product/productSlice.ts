@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
-import { IProductModel } from '../../../models/IProductModel'
+import { IFilterModel, IProductModel } from '../../../models/IProductModel'
 
 export interface IProductState {
   products: IProductModel[]
@@ -37,23 +37,48 @@ export const productSlice = createSlice({
         totalPages: action.payload.length / 100,
       }
     },
-    searchProducts: (state, action: PayloadAction<string>) => {
-      state.filtered = state.products.filter((p) =>
-        p.title.toLowerCase().includes(action.payload.toLowerCase())
-      )
+    searchProducts: (state, action: PayloadAction<IFilterModel>) => {
+      const query: string = action.payload.query
+      const gender: string = action.payload.gender
+      const sale: boolean = action.payload.sale
+
+      state.filtered = state.products
+        .filter((p) =>
+          isNaN(+query)
+            ? p.title.toLowerCase().includes(query.toLowerCase())
+            : p.gtin.toLowerCase().includes(query)
+        )
+        .filter((f) =>
+          gender !== undefined && gender.length > 0
+            ? f.gender.toLowerCase() === gender
+            : true
+        )
+        .filter((s) =>
+          sale ? parseFloat(s.sale_price) < parseFloat(s.price) : true
+        )
+
       state.currentPage =
         state.filtered.length > 100
           ? state.filtered.slice(0, 100)
           : state.filtered
-      state.pageInfo.totalPages =
-        state.filtered.length > 100
-          ? state.filtered.length / 100
-          : state.filtered.length
+
+      state.pageInfo = {
+        totalPages:
+          state.filtered.length > 100
+            ? state.filtered.length % 100 === 0
+              ? state.filtered.length / 100
+              : Math.floor(state.filtered.length / 100) + 1
+            : state.filtered.length,
+        currentPage: 1,
+      }
     },
     changePage: (state, action: PayloadAction<number>) => {
       let pageNum = action.payload
       state.pageInfo.currentPage = action.payload
-      state.currentPage = state.filtered.slice((pageNum - 1) * 100, (pageNum - 1) * 100 + 100)
+      state.currentPage = state.filtered.slice(
+        (pageNum - 1) * 100,
+        (pageNum - 1) * 100 + 100
+      )
     },
   },
 })

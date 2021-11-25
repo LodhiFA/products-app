@@ -1,34 +1,23 @@
-import { IProductModel } from '../../models/IProductModel'
 import reducer, {
   IProductState,
   populateProducts,
   searchProducts,
 } from '../../redux/slices/product/productSlice'
-
-const products: IProductModel[] = [
-  {
-    title: 'Product 1',
-    gtin: '5461518461',
-    gender: 'female',
-    sale_price: '39.95 EUR',
-    price: '39.95 EUR',
-    image_link: '',
-    additional_image_link: '',
-  },
-  {
-    title: 'Product 2',
-    gtin: '5461518490',
-    gender: 'male',
-    sale_price: '29.95 EUR',
-    price: '35.95 EUR',
-    image_link: '',
-    additional_image_link: '',
-  },
-]
+import { testProducts } from '../testData'
 
 describe('Testing product slice/reducers', () => {
+  const prevState: IProductState = {
+    products: testProducts,
+    filtered: testProducts,
+    currentPage: testProducts,
+    pageInfo: {
+      currentPage: 1,
+      totalPages: 1,
+    },
+  }
+
   it('should populate products', () => {
-    const prevState: IProductState = {
+    const initState: IProductState = {
       products: [],
       filtered: [],
       currentPage: [],
@@ -37,23 +26,47 @@ describe('Testing product slice/reducers', () => {
         totalPages: 0,
       },
     }
-    expect(reducer(prevState, populateProducts(products)).products).toEqual(
-      products
+    expect(reducer(initState, populateProducts(testProducts)).products).toEqual(
+      testProducts
     )
   })
 
-  it('should search products', () => {
-    const prevState: IProductState = {
-      products: products,
-      filtered: products,
-      currentPage: products,
-      pageInfo: {
-        currentPage: 1,
-        totalPages: 1,
-      },
-    }
-    expect(reducer(prevState, searchProducts('Product 2')).filtered).toEqual(
-      [products[1]]
-    )
+  it('should search products by title', () => {
+    expect(
+      reducer(
+        prevState,
+        searchProducts({
+          query: 'Product 2',
+          gender: '',
+          sale: false,
+        })
+      ).filtered
+    ).toEqual([testProducts[1]])
+  })
+
+  it('should filter products by gender', () => {
+    expect(
+      reducer(
+        prevState,
+        searchProducts({
+          query: '',
+          gender: 'female',
+          sale: false,
+        })
+      ).filtered
+    ).toEqual([testProducts[0]])
+  })
+
+  it('should show products on sale', () => {
+    expect(
+      reducer(
+        prevState,
+        searchProducts({
+          query: '',
+          gender: '',
+          sale: true,
+        })
+      ).filtered
+    ).toEqual([testProducts[1]])
   })
 })

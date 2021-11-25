@@ -10,30 +10,65 @@ describe('Testing the app with dummy store', () => {
     render(<App />)
   })
 
+  it('renders the products from store', () => {
+    expect(
+      screen.getByTestId(`test-${testProducts[0].gtin}`)
+    ).toBeInTheDocument()
+    expect(
+      screen.getByTestId(`test-${testProducts[1].gtin}`)
+    ).toBeInTheDocument()
+  })
+
   it('renders the search component', () => {
     const input = screen.getByLabelText('search-input')
     expect(input).toBeInTheDocument()
   })
 
-  it('renders the products from store', () => {
-    const card = screen.getByTestId(`test-${testProducts[1].gtin}`)
-    expect(card).toBeInTheDocument()
-  })
-
-  it('filters the search results', () => {
-    const card = screen.getByTestId(`test-${testProducts[1].gtin}`)
-    expect(card).toBeInTheDocument()
-
+  it('returns products based on search query', () => {
     const input = screen.getByLabelText('search-input')
     expect(input).toBeInTheDocument()
 
     userEvent.type(input, 'My')
     expect(input).toHaveValue('My')
 
-    expect(card).not.toBeInTheDocument()
+    expect(
+      screen.queryByTestId(`test-${testProducts[1].gtin}`)
+    ).not.toBeInTheDocument()
 
     expect(
-      screen.getByTestId(`test-${testProducts[0].gtin}`)
+      screen.queryByTestId(`test-${testProducts[0].gtin}`)
+    ).toBeInTheDocument()
+  })
+
+  it('filters products based on gender', () => {
+    const select = screen.getByTestId('test-select')
+    expect(select).toBeInTheDocument()
+
+    fireEvent.change(select, { target: { value: 'female' } })
+    expect(select).toHaveValue('female')
+
+    expect(
+      screen.queryByTestId(`test-${testProducts[1].gtin}`)
+    ).not.toBeInTheDocument()
+
+    expect(
+      screen.queryByTestId(`test-${testProducts[0].gtin}`)
+    ).toBeInTheDocument()
+  })
+
+  it('shows products on sale', () => {
+    const checkbox = screen.getByTestId('test-sale') as HTMLInputElement
+    expect(checkbox).toBeInTheDocument()
+
+    fireEvent.click(checkbox)
+    expect(checkbox.checked).toEqual(true)
+
+    expect(
+      screen.queryByTestId(`test-${testProducts[0].gtin}`)
+    ).not.toBeInTheDocument()
+
+    expect(
+      screen.queryByTestId(`test-${testProducts[1].gtin}`)
     ).toBeInTheDocument()
   })
 

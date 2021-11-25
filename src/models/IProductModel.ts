@@ -7,3 +7,9 @@ export interface IProductModel {
   image_link: string
   additional_image_link: string
 }
+
+export interface IFilterModel {
+  query: string
+  gender: string
+  sale: boolean
+}

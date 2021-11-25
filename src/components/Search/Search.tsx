@@ -1,15 +1,26 @@
 import React, { ChangeEvent, useState, useEffect } from 'react'
-import { Form, Card } from 'react-bootstrap'
+import { Form, Card, Row, Col, FloatingLabel } from 'react-bootstrap'
+import { IFilterModel } from '../../models/IProductModel'
 import { useAppDispatch } from '../../redux/app/hooks'
 import { searchProducts } from '../../redux/slices/product/productSlice'
+
+import styles from './Search.module.css'
 
 export const Search = () => {
   const dispatch = useAppDispatch()
 
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState({
+    query: '',
+    gender: '',
+    sale: false,
+  } as IFilterModel)
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value)
+  const handleChange = (e: ChangeEvent<HTMLElement>) => {
+    const elem = e.target as HTMLInputElement
+    setSearch({
+      ...search,
+      [elem.name]: elem.name === 'sale' ? elem.checked : elem.value,
+    })
   }
 
   useEffect(() => {
@@ -18,21 +29,52 @@ export const Search = () => {
 
   return (
     <Card>
-      <Card.Body>
-        <Card.Title>Search Products</Card.Title>
+      <Card.Body className={styles.searchCard}>
+        <Card.Title></Card.Title>
         <Card.Text as='div'>
           <Form>
-            <Form.Group className='mb-3' controlId='formBasicSearch'>
-              <Form.Control
-                type='text'
-                aria-label="search-input"
-                placeholder='Search Products'
-                value={search}
-                onChange={handleSearch}
-              />
-              <Form.Text className='text-muted'>
-                Search the products by title.
-              </Form.Text>
+            <Form.Group as={Row} controlId='formBasicSearch'>
+              <Col sm={8}>
+                <FloatingLabel
+                  controlId='searchProducts'
+                  label='Search Products'>
+                  <Form.Control
+                    type='text'
+                    aria-label='search-input'
+                    placeholder='Search Products'
+                    name='query'
+                    value={search.query}
+                    onChange={handleChange}
+                  />
+                </FloatingLabel>
+                <Form.Check
+                  className={styles.checkbox}
+                  id='onsale'
+                  name='sale'
+                  data-testid='test-sale'
+                  label='On Sale'
+                  type='checkbox'
+                  checked={search.sale}
+                  onChange={handleChange}
+                />
+              </Col>
+              <Col sm={4}>
+                <FloatingLabel
+                  controlId='selectGender'
+                  label='Filter by Gender'>
+                  <Form.Select
+                    aria-label='Filter by Gender'
+                    name='gender'
+                    data-testid='test-select'
+                    value={search.gender}
+                    onChange={handleChange}>
+                    <option hidden>Select Gender</option>
+                    <option value='female'>Female</option>
+                    <option value='male'>Male</option>
+                    <option value='unisex'>Unisex</option>
+                  </Form.Select>
+                </FloatingLabel>
+              </Col>
             </Form.Group>
           </Form>
         </Card.Text>
