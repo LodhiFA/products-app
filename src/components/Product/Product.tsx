@@ -23,7 +23,11 @@ export const Product = (props: IProductProps) => {
         className={styles.productCard}
         data-testid={'test-' + props.product.gtin}
         onClick={handleClick}>
-        <ProductImage src={props.product.image_link} className='card-img-top' />
+        <ProductImage
+          src={props.product.image_link}
+          className='card-img-top'
+          alt={`${props.product.title}`}
+        />
         <Card.Body className={styles.productBody}>
           <Card.Title className={styles.productTitle}>
             {props.product.title}

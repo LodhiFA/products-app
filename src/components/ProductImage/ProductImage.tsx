@@ -4,6 +4,7 @@ import { Spinner } from 'react-bootstrap'
 interface IImageProps {
   src: string
   className?: string
+  alt: string
 }
 
 export const ProductImage = (props: IImageProps) => {
@@ -26,7 +27,7 @@ export const ProductImage = (props: IImageProps) => {
   }, [props.src])
 
   if (loadedSrc === props.src) {
-    return <img {...props} />
+    return <img {...props} alt={props.alt} />
   }
 
   return (

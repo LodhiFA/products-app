@@ -26,7 +26,11 @@ export const ProductDetail = () => {
                 .map((link: string, key: number) => {
                   return (
                     <Carousel.Item key={key}>
-                      <ProductImage src={link} className={styles.carouselImg} />
+                      <ProductImage
+                        src={link}
+                        className={styles.carouselImg}
+                        alt={`${details.product.gtin + key}`}
+                      />
                     </Carousel.Item>
                   )
                 })}
