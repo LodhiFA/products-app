@@ -23,17 +23,19 @@ export const Product = (props: IProductProps) => {
         data-testid={'test-' + props.product.gtin}
         onClick={handleClick}>
         <Card.Img variant='top' src={props.product.image_link} />
-        <Card.Body>
-          <Card.Title>{props.product.title}</Card.Title>
+        <Card.Body className={styles.productBody}>
+          <Card.Title className={styles.productTitle}>
+            {props.product.title}
+          </Card.Title>
           <Card.Text>
-            <strong>{capitalize(props.product.gender)}</strong>
+            <i>{capitalize(props.product.gender)}</i>
             <br />
             {props.product.gtin}
           </Card.Text>
         </Card.Body>
         <ListGroup className='list-group-flush'>
-          <ListGroupItem>Price: {props.product.price}</ListGroupItem>
           <ListGroupItem>Sale Price: {props.product.sale_price}</ListGroupItem>
+          <ListGroupItem>Price: {props.product.price}</ListGroupItem>
         </ListGroup>
       </Card>
     </Col>

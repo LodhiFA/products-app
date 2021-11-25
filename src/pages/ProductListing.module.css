@@ -1,5 +1,5 @@
 .productList {
-    height: calc(100vh - 180px);
+    height: calc(100vh - 265px);
     overflow-x: hidden;
     overflow-y: scroll;
 }

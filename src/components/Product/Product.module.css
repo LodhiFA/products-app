@@ -1,12 +1,23 @@
 .product {
-    margin: 10px 0;
+  margin: 10px 0;
+  height: 450px;
 }
 
 .productCard {
-    height: 100%;
-    width: 18rem;
+  height: 100%;
+  width: 18rem;
 }
 
 .productCard img {
-    padding: 0 50px;
+  padding: 0 50px;
+  height: 50%;
+}
+
+.productTitle {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.productBody {
+  flex: none;
 }

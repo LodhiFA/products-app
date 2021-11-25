@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import './App.css'
 import { ProductListing } from './pages/ProductListing'
 
 function App() {

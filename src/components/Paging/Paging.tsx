@@ -12,13 +12,14 @@ export const Paging = () => {
   }
 
   return (
-    <Pagination>
+    <Pagination style={{ margin: '0 25%' }}>
       <Pagination.First
         onClick={(e) => {
           handleClick(e, 1)
         }}
       />
       <Pagination.Prev
+        disabled={pageInfo.currentPage === 1}
         onClick={(e) => {
           handleClick(e, pageInfo.currentPage - 1)
         }}
@@ -41,7 +42,7 @@ export const Paging = () => {
             )
           })
         : pageInfo.currentPage >= pageInfo.totalPages - 9
-        ? Array.from({ length: 10 }, (_, i) => pageInfo.totalPages - 9 +i).map(
+        ? Array.from({ length: 10 }, (_, i) => pageInfo.totalPages - 9 + i).map(
             (k: number) => {
               return (
                 <Pagination.Item
@@ -72,6 +73,7 @@ export const Paging = () => {
           })}
 
       <Pagination.Next
+        disabled={pageInfo.currentPage === pageInfo.totalPages}
         onClick={(e) => {
           handleClick(e, pageInfo.currentPage + 1)
         }}
