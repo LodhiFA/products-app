@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState, useEffect } from 'react'
 import { Form, Card } from 'react-bootstrap'
-import { useAppDispatch } from '../../app/hooks'
-import { searchProducts } from '../../slices/product/productSlice'
+import { useAppDispatch } from '../../redux/app/hooks'
+import { searchProducts } from '../../redux/slices/product/productSlice'
 
 export const Search = () => {
   const dispatch = useAppDispatch()
@@ -25,6 +25,7 @@ export const Search = () => {
             <Form.Group className='mb-3' controlId='formBasicSearch'>
               <Form.Control
                 type='text'
+                aria-label="search-input"
                 placeholder='Search Products'
                 value={search}
                 onChange={handleSearch}

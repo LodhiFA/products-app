@@ -3,7 +3,7 @@ import reducer, {
   IProductState,
   populateProducts,
   searchProducts,
-} from '../../slices/product/productSlice'
+} from '../../redux/slices/product/productSlice'
 
 const products: IProductModel[] = [
   {

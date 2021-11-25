@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Row, Carousel } from 'react-bootstrap'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { modal, hideModal } from '../../slices/modal/modalSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
+import { modal, hideModal } from '../../redux/slices/modal/modalSlice'
 
 export const ProductDetail = () => {
   const dispatch = useAppDispatch()

@@ -1,6 +1,5 @@
 import React from 'react'
 import { fireEvent, screen } from '@testing-library/react'
-import { Provider } from 'react-redux'
 import App from '../App'
 import userEvent from '@testing-library/user-event'
 import { render } from './test-utils'

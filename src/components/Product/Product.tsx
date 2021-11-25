@@ -1,8 +1,8 @@
 import React from 'react'
 import { Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
-import { useAppDispatch } from '../../app/hooks'
+import { useAppDispatch } from '../../redux/app/hooks'
 import { IProductModel } from '../../models/IProductModel'
-import { showModal } from '../../slices/modal/modalSlice'
+import { showModal } from '../../redux/slices/modal/modalSlice'
 import { capitalize } from '../../utilities/Utility'
 import styles from './Product.module.css'
 

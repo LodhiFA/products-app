@@ -1,23 +1,19 @@
 import React, { useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { useAppDispatch } from '../app/hooks'
+import { useAppDispatch, useAppSelector } from '../redux/app/hooks'
 import { ProductDetail } from '../components/Details/ProductDetail'
 import { ProductGrid } from '../components/Grid/ProductGrid'
 import { Paging } from '../components/Paging/Paging'
 import { Search } from '../components/Search/Search'
-import { IProductModel } from '../models/IProductModel'
 import { readCSVData } from '../services/ProductService'
 import {
-  populateProducts,
-} from '../slices/product/productSlice'
+  populateProducts, products,
+} from '../redux/slices/product/productSlice'
 
 import styles from './ProductListing.module.css'
 
-interface IListingProps {
-  data: IProductModel[]
-}
-
-export const ProductListing = (props: IListingProps) => {
+export const ProductListing = () => {
+  const prods = useAppSelector(products)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -45,7 +41,7 @@ export const ProductListing = (props: IListingProps) => {
       <br />
 
       <Row className={styles.productList}>
-        <ProductGrid products={props.data} />
+        <ProductGrid products={prods} />
       </Row>
 
       <ProductDetail />

@@ -1,7 +1,7 @@
 import React, { MouseEvent } from 'react'
 import { Pagination } from 'react-bootstrap'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { changePage, pages } from '../../slices/product/productSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
+import { changePage, pages } from '../../redux/slices/product/productSlice'
 
 export const Paging = () => {
   const dispatch = useAppDispatch()
@@ -26,7 +26,7 @@ export const Paging = () => {
 
       {pageInfo.currentPage <= 10
         ? Array.from(
-            { length: 10 },
+            { length: pageInfo.totalPages <= 10 ? pageInfo.totalPages : 10 },
             (_, i = pageInfo.currentPage) => i + 1
           ).map((k: number) => {
             return (

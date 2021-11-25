@@ -1,5 +1,5 @@
 import { IProductModel } from '../../models/IProductModel'
-import reducer, { hideModal, IModalState, showModal } from '../../slices/modal/modalSlice'
+import reducer, { hideModal, IModalState, showModal } from '../../redux/slices/modal/modalSlice'
 
 const modalVal: IProductModel = {
   title: 'Product 1',
