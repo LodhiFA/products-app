@@ -5,6 +5,7 @@ import { IProductModel } from '../../models/IProductModel'
 import { showModal } from '../../redux/slices/modal/modalSlice'
 import { capitalize } from '../../utilities/Utility'
 import styles from './Product.module.css'
+import { ProductImage } from '../ProductImage/ProductImage'
 
 interface IProductProps {
   product: IProductModel
@@ -22,7 +23,7 @@ export const Product = (props: IProductProps) => {
         className={styles.productCard}
         data-testid={'test-' + props.product.gtin}
         onClick={handleClick}>
-        <Card.Img variant='top' src={props.product.image_link} />
+        <ProductImage src={props.product.image_link} className='card-img-top' />
         <Card.Body className={styles.productBody}>
           <Card.Title className={styles.productTitle}>
             {props.product.title}

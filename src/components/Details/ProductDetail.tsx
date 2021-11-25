@@ -2,6 +2,9 @@ import React from 'react'
 import { Modal, Row, Carousel } from 'react-bootstrap'
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { modal, hideModal } from '../../redux/slices/modal/modalSlice'
+import { ProductImage } from '../ProductImage/ProductImage'
+
+import styles from './ProductDetail.module.css'
 
 export const ProductDetail = () => {
   const dispatch = useAppDispatch()
@@ -23,11 +26,7 @@ export const ProductDetail = () => {
                 .map((link: string, key: number) => {
                   return (
                     <Carousel.Item key={key}>
-                      <img
-                        className='d-block w-100'
-                        src={link}
-                        alt={details.product.title}
-                      />
+                      <ProductImage src={link} className={styles.carouselImg} />
                     </Carousel.Item>
                   )
                 })}
