@@ -38,7 +38,7 @@ export const Product = (props: IProductProps) => {
             {props.product.gtin}
           </Card.Text>
         </Card.Body>
-        <ListGroup className='list-group-flush'>
+        <ListGroup className={'list-group-flush ' + styles.priceList}>
           <ListGroupItem>Sale Price: {props.product.sale_price}</ListGroupItem>
           <ListGroupItem>Price: {props.product.price}</ListGroupItem>
         </ListGroup>

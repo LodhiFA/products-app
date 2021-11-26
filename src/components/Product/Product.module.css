@@ -6,6 +6,14 @@
 .productCard {
   height: 100%;
   width: 18rem;
+  cursor: pointer;
+  transition: border 0.2s ease-out;
+  border: 2px outset;
+}
+
+.productCard:hover {
+  border: 4px inset #42a5f5;
+  transition: border 0.2s ease-out;
 }
 
 .productCard img {
@@ -20,4 +28,8 @@
 
 .productBody {
   flex: none;
+}
+
+.priceList {
+  border-top: 2px outset !important;
 }
