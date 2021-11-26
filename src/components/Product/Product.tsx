@@ -14,7 +14,7 @@ interface IProductProps {
 
 /**
  * Component to render product card.
- * 
+ *
  * The component accepts Product model as props and renders bootstrap card based layout.
  */
 export const Product = (props: IProductProps) => {
@@ -22,12 +22,16 @@ export const Product = (props: IProductProps) => {
 
   /* Dispatching call to reducer to show Modal */
   const handleClick = (e: React.MouseEvent<HTMLElement>) =>
-    dispatch(showModal(props.product))
+    props.product.additional_image_link.length > 0
+      ? dispatch(showModal(props.product))
+      : {}
 
   return (
     <Col sm={3} className={styles.product}>
       <Card
-        className={styles.productCard}
+        className={`${styles.productCard} ${
+          props.product.additional_image_link.length > 0 ? styles.clickable : ''
+        }`}
         data-testid={'test-' + props.product.gtin}
         onClick={handleClick}>
         <ProductImage

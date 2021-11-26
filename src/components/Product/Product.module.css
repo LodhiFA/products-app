@@ -1,17 +1,19 @@
 .product {
   margin: 10px 0;
-  height: 450px;
 }
 
 .productCard {
   height: 100%;
   width: 18rem;
+}
+
+.clickable {
   cursor: pointer;
   transition: border 0.2s ease-out;
   border: 2px outset;
 }
 
-.productCard:hover {
+.clickable:hover {
   border: 4px inset #42a5f5;
   transition: border 0.2s ease-out;
 }
@@ -27,7 +29,8 @@
 }
 
 .productBody {
-  flex: none;
+  flex: none !important;
+  padding: 5px 20px !important;
 }
 
 .priceList {

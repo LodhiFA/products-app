@@ -35,6 +35,12 @@ const parseData = async (res: any): Promise<IProductModel[]> => {
         additional_image_link: '',
       }
       keys.forEach((key, i) => (object[key] = array[i]))
+
+      /* Handling falsely gender values */
+      if (!'male, female, unisex'.includes(object['gender']))
+        if (object['title'].includes('Wallis')) object['gender'] = 'female'
+        else object['gender'] = 'male'
+
       return object
     })
     return objects
