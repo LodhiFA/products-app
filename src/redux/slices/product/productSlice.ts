@@ -2,10 +2,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 import { IFilterModel, IProductModel } from '../../../models/IProductModel'
 
+/* Typescript model for product state */
 export interface IProductState {
+  /* Storing products fetched from file */
   products: IProductModel[]
+  /* Initially equal to products but changes as filters are applied */
   filtered: IProductModel[]
+  /* Only to show current page data */
   currentPage: IProductModel[]
+  /* Storing page information i.e. current page and max pages */
   pageInfo: IPageState
 }
 
@@ -14,6 +19,7 @@ interface IPageState {
   totalPages: number
 }
 
+/* Initial state */
 const initialState: IProductState = {
   products: [],
   filtered: [],
@@ -28,6 +34,7 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
+    /* Reducer to populate products */
     populateProducts: (state, action: PayloadAction<IProductModel[]>) => {
       state.products = action.payload
       state.filtered = action.payload
@@ -37,6 +44,7 @@ export const productSlice = createSlice({
         totalPages: action.payload.length / 100,
       }
     },
+    /* Reducer to filter out products */
     searchProducts: (state, action: PayloadAction<IFilterModel>) => {
       const query: string = action.payload.query
       const gender: string = action.payload.gender
@@ -44,16 +52,19 @@ export const productSlice = createSlice({
 
       state.filtered = state.products
         .filter((p) =>
+          /* Searching products by text input (searches by title or gtin depending on input) */
           isNaN(+query)
             ? p.title.toLowerCase().includes(query.toLowerCase())
             : p.gtin.toLowerCase().includes(query)
         )
         .filter((f) =>
+          /* Filtering by gender */
           gender !== undefined && gender.length > 0
             ? f.gender.toLowerCase() === gender
             : true
         )
         .filter((s) =>
+          /* Filtering for sale check */
           sale ? parseFloat(s.sale_price) < parseFloat(s.price) : true
         )
 
@@ -72,6 +83,7 @@ export const productSlice = createSlice({
         currentPage: 1,
       }
     },
+    /* Reducer to handle page change event */
     changePage: (state, action: PayloadAction<number>) => {
       let pageNum = action.payload
       state.pageInfo.currentPage = action.payload

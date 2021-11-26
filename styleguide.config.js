@@ -1,3 +1,6 @@
+/**
+ * Config file for React Styleguidist
+ */
 const path = require('path')
 
 module.exports = {

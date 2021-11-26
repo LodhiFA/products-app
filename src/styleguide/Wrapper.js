@@ -6,6 +6,9 @@ import productReducer from '../redux/slices/product/productSlice'
 import modalReducer from '../redux/slices/modal/modalSlice'
 import initialState from '../tests/testData'
 
+/**
+ * Wrapper component for rendering our components in react styleguided documentation
+ */
 const store = configureStore({
   reducer: {
     product: productReducer,

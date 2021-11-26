@@ -20,6 +20,7 @@ interface IProductProps {
 export const Product = (props: IProductProps) => {
   const dispatch = useAppDispatch()
 
+  /* Dispatching call to reducer to show Modal */
   const handleClick = (e: React.MouseEvent<HTMLElement>) =>
     dispatch(showModal(props.product))
 

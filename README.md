@@ -5,8 +5,6 @@ The products can be filtered using the *Search* form.
 
 ## Documentation
 
-The project is documented using [react styleguidist](https://react-styleguidist.js.org/).
-
 The documentation can be viewed by at path 
 
 ### `[project-root]/styleguidist/index.html`
@@ -14,6 +12,8 @@ The documentation can be viewed by at path
 Alternatively, the following command can be run which will run a *dev server*, displaying the documentation at [http://localhost:6060/](http://localhost:6060/)
 
 ### `yarn doc`
+
+The project is documented using [react styleguidist](https://react-styleguidist.js.org/).
 
 ## Folder Structure
 

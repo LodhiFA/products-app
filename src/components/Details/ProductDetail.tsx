@@ -8,13 +8,14 @@ import styles from './ProductDetail.module.css'
 
 /**
  * Component to display product details in modal.
- * 
- * The component toggles bootstrap Modal component based on value in redux store. 
+ *
+ * The component toggles bootstrap Modal component based on value in redux store.
  */
 export const ProductDetail = () => {
   const dispatch = useAppDispatch()
   const details = useAppSelector(modal)
 
+  /* Dispatch call to reducer to hide Modal */
   const handleClose = () => dispatch(hideModal())
 
   return (
@@ -26,19 +27,22 @@ export const ProductDetail = () => {
         <Modal.Body>
           <Row>
             <Carousel>
-              {details.product.additional_image_link
-                .split(', ')
-                .map((link: string, key: number) => {
-                  return (
-                    <Carousel.Item key={key}>
-                      <ProductImage
-                        src={link}
-                        className={styles.carouselImg}
-                        alt={`${details.product.gtin + key}`}
-                      />
-                    </Carousel.Item>
-                  )
-                })}
+              {
+                /* Splitting urls inside additional image link property */
+                details.product.additional_image_link
+                  .split(', ')
+                  .map((link: string, key: number) => {
+                    return (
+                      <Carousel.Item key={key}>
+                        <ProductImage
+                          src={link}
+                          className={styles.carouselImg}
+                          alt={`${details.product.gtin + key}`}
+                        />
+                      </Carousel.Item>
+                    )
+                  })
+              }
             </Carousel>
           </Row>
         </Modal.Body>

@@ -25,7 +25,9 @@ export const ProductListing = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
+    /* Calling service method to fetch data */
     readCSVData().then((prod) => {
+      /* Dispatching fetched data to reducer */
       dispatch(populateProducts(prod))
     })
   }, [dispatch])

@@ -8,7 +8,7 @@ import styles from './Search.module.css'
 
 /**
  * Component for rendering search form.
- * 
+ *
  * The component dispatches the call to redux store based on input parameters.
  */
 export const Search = () => {
@@ -20,6 +20,7 @@ export const Search = () => {
     sale: false,
   } as IFilterModel)
 
+  /* On Change handler for form fields */
   const handleChange = (e: ChangeEvent<HTMLElement>) => {
     const elem = e.target as HTMLInputElement
     setSearch({
@@ -29,6 +30,7 @@ export const Search = () => {
   }
 
   useEffect(() => {
+    /* Dispatching to reducer whenever form field changes */
     dispatch(searchProducts(search))
   }, [search, dispatch])
 

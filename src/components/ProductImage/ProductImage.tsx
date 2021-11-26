@@ -25,6 +25,7 @@ export const ProductImage = (props: IImageProps) => {
 
     if (props.src) {
       const handleLoad = () => {
+        /* Updating state/image src on image load event */
         setLoadedSrc(props.src)
       }
       const image = new Image()

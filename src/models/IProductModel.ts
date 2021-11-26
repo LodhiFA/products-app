@@ -1,3 +1,4 @@
+/* Typescript model for product data fetched from CSV */
 export interface IProductModel {
   title: string
   gtin: string
@@ -8,6 +9,7 @@ export interface IProductModel {
   additional_image_link: string
 }
 
+/* Typescript model for search filter */
 export interface IFilterModel {
   query: string
   gender: string

@@ -5,17 +5,25 @@ import reducer, {
 } from '../../redux/slices/product/productSlice'
 import { testProducts } from '../testData'
 
-describe('Testing product slice/reducers', () => {
-  const prevState: IProductState = {
-    products: testProducts,
-    filtered: testProducts,
-    currentPage: testProducts,
-    pageInfo: {
-      currentPage: 1,
-      totalPages: 1,
-    },
-  }
+/* Sample state for testing purpose */
+const prevState: IProductState = {
+  products: testProducts,
+  filtered: testProducts,
+  currentPage: testProducts,
+  pageInfo: {
+    currentPage: 1,
+    totalPages: 1,
+  },
+}
 
+/**
+ * Unit test for product slice
+ */
+describe('Testing product slice/reducers', () => {
+
+  /**
+   * Test to verify populate product reducer
+   */
   it('should populate products', () => {
     const initState: IProductState = {
       products: [],
@@ -31,7 +39,10 @@ describe('Testing product slice/reducers', () => {
     )
   })
 
-  it('should search products by title', () => {
+  /**
+   * Test to filter product by input
+   */
+  it('should filter products by title', () => {
     expect(
       reducer(
         prevState,
@@ -44,6 +55,9 @@ describe('Testing product slice/reducers', () => {
     ).toEqual([testProducts[1]])
   })
 
+  /**
+   * Test to filter product by gender
+   */
   it('should filter products by gender', () => {
     expect(
       reducer(
@@ -57,6 +71,9 @@ describe('Testing product slice/reducers', () => {
     ).toEqual([testProducts[0]])
   })
 
+  /**
+   * Test to filter product by sale checkbox
+   */
   it('should show products on sale', () => {
     expect(
       reducer(

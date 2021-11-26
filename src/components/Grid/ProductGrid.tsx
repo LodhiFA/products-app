@@ -20,6 +20,7 @@ export const ProductGrid = (props: IProductGridProps) => {
     props.products.slice(key * 4, key * 4 + 4)
   )
 
+  /* Creating new row after every 4 elements in the array */
   const content = productRows.map((row, idx) => (
     <Row key={idx}>
       {row.map((product, key) => (
