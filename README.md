@@ -3,6 +3,8 @@
 The project displays a list of products fetched from a CSV file. The products are displayed in a *Grid* format with 100 products (at max) per page.
 The products can be filtered using the *Search* form.
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
 ## Documentation
 
 The documentation can be viewed by at path 
