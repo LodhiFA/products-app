@@ -8,9 +8,15 @@ import styles from './Product.module.css'
 import { ProductImage } from '../ProductImage/ProductImage'
 
 interface IProductProps {
+  /** Expects an object of Product model */
   product: IProductModel
 }
 
+/**
+ * Component to render product card.
+ * 
+ * The component accepts Product model as props and renders bootstrap card based layout.
+ */
 export const Product = (props: IProductProps) => {
   const dispatch = useAppDispatch()
 

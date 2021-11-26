@@ -6,6 +6,11 @@ import { ProductImage } from '../ProductImage/ProductImage'
 
 import styles from './ProductDetail.module.css'
 
+/**
+ * Component to display product details in modal.
+ * 
+ * The component toggles bootstrap Modal component based on value in redux store. 
+ */
 export const ProductDetail = () => {
   const dispatch = useAppDispatch()
   const details = useAppSelector(modal)

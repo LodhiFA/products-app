@@ -3,6 +3,13 @@ import { Pagination } from 'react-bootstrap'
 import { useAppDispatch, useAppSelector } from '../../redux/app/hooks'
 import { changePage, pages } from '../../redux/slices/product/productSlice'
 
+/**
+ * Component for handling Pagination.
+ * 
+ * The component renders bootstrap pagination component based on total no. of pages in the redux store.
+ * 
+ * Each pagination item triggers a call to redux store for fetching data according to current page no.
+ */
 export const Paging = () => {
   const dispatch = useAppDispatch()
   const pageInfo = useAppSelector(pages)

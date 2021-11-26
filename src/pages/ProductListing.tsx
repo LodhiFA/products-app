@@ -13,6 +13,13 @@ import {
 
 import styles from './ProductListing.module.css'
 
+/**
+ * Component for rendering product page.
+ * 
+ * The component calls a service method to fetch data and pass it to redux store.
+ * 
+ * This component is called by App component.
+ */
 export const ProductListing = () => {
   const prods = useAppSelector(products)
   const dispatch = useAppDispatch()

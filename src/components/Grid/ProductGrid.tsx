@@ -4,9 +4,15 @@ import { IProductModel } from '../../models/IProductModel'
 import { Product } from '../Product/Product'
 
 interface IProductGridProps {
+  /** Expects an array of products */
   products: IProductModel[]
 }
 
+/**
+ * Grid component to display products.
+ * 
+ * The component accepts an array of products as props and displays child Product component.
+ */
 export const ProductGrid = (props: IProductGridProps) => {
   const rows = [...Array(Math.ceil(props.products.length / 4))]
 

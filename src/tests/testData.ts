@@ -1,6 +1,9 @@
 import { RootState } from '../redux/app/store'
 import { IProductModel } from '../models/IProductModel'
 
+/**
+ * Sample data for running test cases
+ */
 export const testProducts: IProductModel[] = [
   {
     title: 'My Product',
@@ -8,8 +11,10 @@ export const testProducts: IProductModel[] = [
     gender: 'female',
     sale_price: '39.95 EUR',
     price: '39.95 EUR',
-    image_link: '',
-    additional_image_link: '',
+    image_link:
+      'https://mosaic01.ztat.net/vgs/media/large/WE/B2/1N/00/HQ/11/WEB21N00H-Q11@12.4.jpg',
+    additional_image_link:
+      'https://mosaic01.ztat.net/vgs/media/large/WE/B2/1N/00/HQ/11/WEB21N00H-Q11@22.jpg, https://mosaic01.ztat.net/vgs/media/large/WE/B2/1N/00/HQ/11/WEB21N00H-Q11@21.jpg, https://mosaic01.ztat.net/vgs/media/large/WE/B2/1N/00/HQ/11/WEB21N00H-Q11@20.jpg',
   },
   {
     title: 'Product 2',
@@ -17,11 +22,16 @@ export const testProducts: IProductModel[] = [
     gender: 'male',
     sale_price: '29.95 EUR',
     price: '35.95 EUR',
-    image_link: '',
-    additional_image_link: '',
+    image_link:
+      'https://mosaic01.ztat.net/vgs/media/large/DI/15/2L/01/AQ/11/DI152L01A-Q11@10.jpg',
+    additional_image_link:
+      'https://mosaic01.ztat.net/vgs/media/large/DI/15/2L/01/AQ/11/DI152L01A-Q11@2.2.jpg, https://mosaic01.ztat.net/vgs/media/large/DI/15/2L/01/AQ/11/DI152L01A-Q11@9.jpg, https://mosaic01.ztat.net/vgs/media/large/DI/15/2L/01/AQ/11/DI152L01A-Q11@8.jpg',
   },
 ]
 
+/**
+ * Sample initial state for running test cases
+ */
 const initialState: RootState = {
   modal: {
     show: false,

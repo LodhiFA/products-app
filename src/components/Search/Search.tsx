@@ -6,6 +6,11 @@ import { searchProducts } from '../../redux/slices/product/productSlice'
 
 import styles from './Search.module.css'
 
+/**
+ * Component for rendering search form.
+ * 
+ * The component dispatches the call to redux store based on input parameters.
+ */
 export const Search = () => {
   const dispatch = useAppDispatch()
 
